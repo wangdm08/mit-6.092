@@ -9,12 +9,12 @@ class FooCorporation{
                     pay = base*hours;
                     System.out.println("Total pay is" + pay);
                 }
-                else if (hours>40 && hours<=60){
-                    pay = base*40+(hours-40)*1.5*base;
-                    System.out.println("Total pay is" + " " + pay);
+                else if (hours>60){
+                    System.out.println("hours worked exceed the maximum,error");
                 }
                 else {
-                    System.out.println("hours worked exceed the maximum,error");
+                    pay = base*40+(hours-40)*1.5*base;
+                    System.out.println("Total pay is" + " " + pay);
                 }
             }
     }
