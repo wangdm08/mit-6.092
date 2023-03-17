@@ -9,13 +9,13 @@ class Marathon {
         return first;
     }
     public static int secondFastest (String[] secondName, int[] secondTime) {
-        int second = 0;
+        int second = -1;
         int first = fastest(secondName, secondTime);
         for (int j = 0; j < secondName.length; j++) {
             if (j == first) {
                 continue;
             }
-            if (secondTime[j] < secondTime[second]) {
+            if (second == -1 || secondTime[j] < secondTime[second]) {
                 second = j;
             }
         }
