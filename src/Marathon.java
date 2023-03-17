@@ -8,8 +8,9 @@ class Marathon {
         }
         return first;
     }
-    public static int secondFastest (String[] secondName, int[] secondTime, int first) {
+    public static int secondFastest (String[] secondName, int[] secondTime) {
         int second = 0;
+        int first = fastest(secondName, secondTime);
         for (int j = 0; j < secondName.length; j++) {
             if (j == first) {
                 continue;
@@ -31,7 +32,7 @@ class Marathon {
                 343, 317, 265
         };
         int firstNum = fastest(names, times);
-        int secondNum = secondFastest(names,times,firstNum);
+        int secondNum = secondFastest(names,times);
         System.out.println("Fastest runner is " + names[firstNum] + ": " + times[firstNum]);
         System.out.println("Second fastest runner is " + names[secondNum] + ": " + times[secondNum]);
     }
