@@ -1,3 +1,5 @@
+package Assignment2;
+
 class FooCorporation{
     public static void totalPay(double base, int hours){
             double pay;

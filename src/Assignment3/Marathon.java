@@ -1,3 +1,5 @@
+package Assignment3;
+
 class Marathon {
     public static int fastest (String[] name, int[] time) {
         int first = 0;
