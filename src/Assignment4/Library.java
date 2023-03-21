@@ -59,11 +59,11 @@ public class Library {
         firstLibrary.addBook(new Book("The Lord of the Rings"));
 
         // Print opening hours and the addresses
-        System.out.println("Assignment4.Library hours:");
+        System.out.println("Library hours:");
         printOpeningHours();
         System.out.println();
 
-        System.out.println("Assignment4.Library addresses:");
+        System.out.println("Library addresses:");
         firstLibrary.printAddress();
         secondLibrary.printAddress();
         System.out.println();
