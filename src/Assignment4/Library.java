@@ -39,8 +39,8 @@ public class Library {
     }
     void printAvailableBooks() {
         if (bookList.size() != 0) {
-            for (int i = 0; i<bookList.size();i++) {
-                System.out.println(bookList.get(i));
+            for (String book : bookList) {
+                System.out.println(book);
             }
         }
         else
