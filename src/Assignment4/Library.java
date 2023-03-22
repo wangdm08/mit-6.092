@@ -6,8 +6,8 @@ import java.util.List;
 public class Library {
     // Add the missing implementation to this class
     String address;
-    List<String>bookList = new ArrayList<String>();
-    List<String>borrowedList = new ArrayList<String>();
+    ArrayList<String>bookList = new ArrayList<String>();
+    ArrayList<String>borrowedList = new ArrayList<String>();
     static void printOpeningHours() {
         System.out.println("Libraries are open daily from 9am to 5pm.");
     }
@@ -27,7 +27,9 @@ public class Library {
             bookList.remove(bookTitle);
         }
         else if (borrowedList.contains(bookTitle)) {
+
             System.out.println("Sorry, this book is already borrowed.");
+
         }
         else{
             System.out.println("Sorry, this book is not in our catalog.");
