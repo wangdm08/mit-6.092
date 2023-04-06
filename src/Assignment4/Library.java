@@ -45,8 +45,9 @@ public class Library {
                 System.out.println(book);
             }
         }
-        else
+        else {
             System.out.println("No book in catalog");
+        }
     }
 
     public static void main(String[] args) {
