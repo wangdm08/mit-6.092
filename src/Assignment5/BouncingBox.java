@@ -11,7 +11,7 @@ public class BouncingBox {
     Color color;
     int xDirection = 0;
     int yDirection = 0;
-
+    
     final int SIZE = 20;
 
     /**
@@ -32,7 +32,7 @@ public class BouncingBox {
         surface.setColor(Color.BLACK);
         ((Graphics2D) surface).setStroke(new BasicStroke(3.0f));
         surface.drawRect(x - SIZE/2, y - SIZE/2, SIZE, SIZE);
-
+        
         // Move the center of the object each time we draw it
         x += xDirection;
         y += yDirection;
@@ -54,4 +54,4 @@ public class BouncingBox {
         xDirection = xIncrement;
         yDirection = yIncrement;
     }
-}
+} 
