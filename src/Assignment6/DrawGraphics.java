@@ -5,23 +5,25 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class DrawGraphics {
-    //Bouncer movingSprite;
     ArrayList<Sprite> boxes = new ArrayList<>();
     ArrayList<Bouncer> Sprites = new ArrayList<>();
-    ArrayList<StraightMover> Movers =new ArrayList<>();
+    ArrayList<StraightMover> Straights =new ArrayList<>();
+    ArrayList<Mover> Movers = new ArrayList<>();
 
     /**
      * Initializes this class for drawing.
      */
     public DrawGraphics() {
-        //Rectangle box = new Rectangle(15, 20, Color.RED);
-        //Rectangle box1 =new Rectangle(25,10,Color.BLUE);
         boxes.add(new Rectangle(15, 20, Color.RED));
-        boxes.add(new Oval(90, 80, Color.BLUE));
+        boxes.add(new Oval(50, 30, Color.BLUE));
         Sprites.add(new Bouncer(100, 170, boxes.get(0)));
-        Sprites.add(new Bouncer(150, 170, boxes.get(1)));
+        Sprites.add(new Bouncer(150, 120, boxes.get(1)));
         Sprites.get(0).setMovementVector(3, 1);
-        Sprites.get(1).setMovementVector(7, 8);
+        Sprites.get(1).setMovementVector(6, 4);
+        Straights.add(new StraightMover(30,30, boxes.get(0)));
+        Straights.add(new StraightMover(70,70, boxes.get(1)));
+        Straights.get(0).setMovementVector(2,7);
+        Straights.get(1).setMovementVector(3,8);
     }
 
     /**
@@ -31,7 +33,8 @@ public class DrawGraphics {
         for (Bouncer Sprite : Sprites) {
             Sprite.draw(surface);
         }
-        for (StraightMover Mover : Movers) {
+        for (StraightMover Straight : Straights) {
+            Straight.draw(surface);
         }
     }
 }

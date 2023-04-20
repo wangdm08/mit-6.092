@@ -2,7 +2,7 @@ package Assignment6;
 
 import java.awt.Graphics;
 
-public class Bouncer {
+public class Bouncer implements Mover {
     private int x;
     private int y;
     private int xDirection;
