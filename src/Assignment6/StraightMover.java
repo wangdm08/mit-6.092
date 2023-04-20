@@ -3,14 +3,14 @@ package Assignment6;
 import java.awt.Graphics;
 
 
-public class StraightMover implements  Mover {
+public class StraightMover implements Mover {
     private int x;
     private int y;
     private int xDirection;
     private int yDirection;
     private Sprite sprite;
 
-    /** Create a Bouncer that positions sprite at (startX, startY). */
+    /** Create a StraightMover that positions sprite at (startX, startY). */
     public StraightMover(int startX, int startY, Sprite sprite) {
         x = startX;
         y = startY;
