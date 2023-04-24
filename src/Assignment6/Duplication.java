@@ -8,10 +8,9 @@ public class Duplication {
     private int xDirection;
     private int yDirection;
     private Sprite sprite;
-    public Duplication(int x, int y, int xDirection, int yDirection, Graphics surface) {
-        x += xDirection;
-        y += yDirection;
-
+    public void setMovementVector(int xIncrement, int yIncrement) {
+        xDirection = xIncrement;
+        yDirection = yIncrement;
     }
 }
 
