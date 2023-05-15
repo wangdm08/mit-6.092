@@ -4,10 +4,7 @@ import java.awt.Graphics;
 
 
 public class StraightMover extends Duplication implements Mover {
-    private int x;
-    private int y;
-    private int xDirection;
-    private int yDirection;
+    private int x, y, xDirection, yDirection;
     private Sprite sprite;
 
     /** Create a StraightMover that positions sprite at (startX, startY). */
