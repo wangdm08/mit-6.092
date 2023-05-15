@@ -17,16 +17,11 @@ public class StraightMover extends Duplication implements Mover {
         this.sprite = sprite; 
     }
 
-
-    public void setMovementVector(int xDirection) {
-        this.xDirection = xDirection;
-    }
-
     /** Starts moving the object in the direction (xIncrement, yIncrement). */
-//    public void setMovementVector(int xIncrement, int yIncrement) {
-//        xDirection = xIncrement;
-//        yDirection = yIncrement;
-//    }
+    public void setMovementVector(int xIncrement, int yIncrement) {
+        xDirection = xIncrement;
+        yDirection = yIncrement;
+    }
 
 
     public void draw(Graphics graphics) {

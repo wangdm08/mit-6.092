@@ -13,7 +13,7 @@ public class Bouncer extends Duplication implements Mover {
     public Bouncer(int startX, int startY, Sprite sprite) {
         x = startX;
         y = startY;
-        this.sprite = sprite; 
+        this.sprite = sprite;
     }
 
     /** Starts moving the object in the direction (xIncrement, yIncrement). */
