@@ -3,8 +3,7 @@ package Assignment6;
 import java.awt.*;
 
 public class Oval implements Sprite {
-    private int width;
-    private int height;
+    private int width, height;
     private Color color;
 
     /**

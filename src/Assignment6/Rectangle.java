@@ -6,8 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class Rectangle implements Sprite {
-    private int width;
-    private int height;
+    private int width, height;
     private Color color;
 
     /**
