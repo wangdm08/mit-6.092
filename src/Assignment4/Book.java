@@ -5,7 +5,7 @@ public class Book {
     String title;
     boolean borrowed;
 
-    // Creates a new Assignment4.Book
+    // Creates a new Book
     public Book(String bookTitle) {
         // Implement this method
         title = bookTitle;
