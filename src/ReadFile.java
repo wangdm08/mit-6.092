@@ -4,11 +4,11 @@ import java.io.IOException;
 public class ReadFile {
     public static void main(String[] args) throws IOException{
         // Path names are relative to project directory (Eclipse Quirk )
-        FileReader fr = new FileReader("D:/Projects/tutorial/src/Assignment7/Luna.txt");
+        FileReader fr = new FileReader("Mercury.txt");
 
         BufferedReader br = new BufferedReader(fr);
 
-        String line = null;
+        String line;
 
         while ((line = br.readLine()) != null) {
 
