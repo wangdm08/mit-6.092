@@ -20,22 +20,22 @@ public class MagicSquares {
 
         // For each line in the file ...
         String line;
-        while ((line = reader.readLine()) != null) {
+        while (((line = reader.readLine()) != null)) {
             // ... sum each row of numbers
-            String[] parts = line.split("\t");
-            int sum = 0;
-            for (String part : parts) {
-                if (!part.equals("")) {
+            if (!line.equals("")) {
+                String[] parts = line.split("\t");
+                int sum = 0;
+                for (String part : parts) {
                     sum += Integer.parseInt(part);
                 }
-            }
-            if (lastSum == -1) {
-                // If this is the first row, remember the sum
-                lastSum = sum;
-            } else if (lastSum != sum) {
-                // if the sums don't match, it isn't magic, so stop reading
-                isMagic = false;
-                break;
+                if (lastSum == -1) {
+                    // If this is the first row, remember the sum
+                    lastSum = sum;
+                } else if (lastSum != sum) {
+                    // if the sums don't match, it isn't magic, so stop reading
+                    isMagic = false;
+                    break;
+                }
             }
         }
 
@@ -49,37 +49,46 @@ public class MagicSquares {
 
         boolean isMagic = true;
         int lastSum = -1;
-        int count = 0;
-        int markRow = -1;
+        int rowCount = 0;
+        int colCount = -1;
         boolean mark=true;
 
         // For each line in the file ...
         String line;
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split("\t");
-            if ((markRow == -1) || (markRow == parts.length)) {
-                markRow = parts.length;
-                ArrayList<String> columns = new ArrayList<>();
-                for (String part : parts) {
-                    if (!part.equals("")) {
+        ArrayList<String> columns = new ArrayList<>();
+        while (((line = reader.readLine()) != null)) {
+            if (!line.equals("")) {
+                String[] parts = line.split("\t");
+                if ((colCount == -1) || (colCount == parts.length)) {
+                    colCount = parts.length;
+                    for (String part : parts) {
                         columns.add(part);
                     }
                 }
+                else {
+                    mark = false;
+                    break;
+                }
+                rowCount++;
             }
-            else {
-                mark = false;
-                break;
-            }
-            count++;
         }
 
+        ArrayList<Integer> columnSums =new ArrayList<>();
+        int columnSum = 0;
         if (mark) {
-            ArrayList<String> columnSums =new ArrayList<>();
-            int columnSum = 0;
-            for (int i=0; i<markRow; i++) {
-                for (int j=0; j<count; j++) {
-                    columnSum+=Integer.parseInt(columnSums.get(i));
+            for (int i=0; i<colCount; i++) {
+                int cnt = 0;
+                columnSum = 0;
+                for (int j=0; j<rowCount; j++) {
+                    columnSum+=Integer.parseInt(columns.get(cnt+i));
+                    cnt+=8;
                 }
+                columnSums.add(columnSum);
+            }
+        }
+        for (int eachSum : columnSums) {
+            if (eachSum != columnSum) {
+                isMagic = false;
             }
         }
 
@@ -96,14 +105,12 @@ public class MagicSquares {
 
         // For each line in the file ...
         String line;
-        while ((line = reader.readLine()) != null) {
+        while (((line = reader.readLine()) != null) && !(line = reader.readLine()).equals("")) {
             // ... sum each row of numbers
             String[] parts = line.split("\t");
             int sum = 0;
             for (String part : parts) {
-                if (!part.equals("")) {
-                    sum += Integer.parseInt(part);
-                }
+                sum += Integer.parseInt(part);
             }
             if (lastSum == -1) {
                 // If this is the first row, remember the sum
@@ -123,6 +130,8 @@ public class MagicSquares {
         String[] fileNames = { "Mercury.txt", "Luna.txt" };
         for (String fileName : fileNames) {
             System.out.println(fileName + " is magic? " + testMagic(fileName));
+            System.out.println(fileName + " is columnMagic? " + testColumnMagic(fileName));
+            System.out.println(fileName + " is diagonalMagic? " + testDiagonalMagic(fileName));
         }
     }
 }
