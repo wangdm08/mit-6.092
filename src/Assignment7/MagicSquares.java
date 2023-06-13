@@ -47,8 +47,7 @@ public class MagicSquares {
         // Open the file
         BufferedReader reader = new BufferedReader(new FileReader(pathName));
 
-        boolean isMagic = true;
-        int lastSum = -1;
+        boolean isColumnMagic = true;
         int rowCount = 0;
         int colCount = -1;
         boolean mark=true;
@@ -88,42 +87,44 @@ public class MagicSquares {
         }
         for (int eachSum : columnSums) {
             if (eachSum != columnSum) {
-                isMagic = false;
+                isColumnMagic = false;
             }
         }
 
         reader.close();
-        return isMagic;
+        return isColumnMagic;
     }
 
     public static boolean testDiagonalMagic(String pathName) throws IOException {
         // Open the file
         BufferedReader reader = new BufferedReader(new FileReader(pathName));
 
-        boolean isMagic = true;
+        boolean isDiagonalMagic = true;
         int lastSum = -1;
 
         // For each line in the file ...
         String line;
-        while (((line = reader.readLine()) != null) && !(line = reader.readLine()).equals("")) {
+        while (((line = reader.readLine()) != null)) {
             // ... sum each row of numbers
-            String[] parts = line.split("\t");
-            int sum = 0;
-            for (String part : parts) {
-                sum += Integer.parseInt(part);
-            }
-            if (lastSum == -1) {
-                // If this is the first row, remember the sum
-                lastSum = sum;
-            } else if (lastSum != sum) {
-                // if the sums don't match, it isn't magic, so stop reading
-                isMagic = false;
-                break;
+            if (!line.equals("")) {
+                String[] parts = line.split("\t");
+                int sum = 0;
+                for (String part : parts) {
+                    sum += Integer.parseInt(part);
+                }
+                if (lastSum == -1) {
+                    // If this is the first row, remember the sum
+                    lastSum = sum;
+                } else if (lastSum != sum) {
+                    // if the sums don't match, it isn't magic, so stop reading
+                    isDiagonalMagic = false;
+                    break;
+                }
             }
         }
 
         reader.close();
-        return isMagic;
+        return isDiagonalMagic;
     }
 
     public static void main(String[] args) throws IOException {
