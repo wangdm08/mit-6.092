@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class MagicSquares {
@@ -50,7 +51,6 @@ public class MagicSquares {
         boolean isColumnMagic = true;
         int rowCount = 0;
         int colCount = -1;
-        boolean mark=true;
 
         // For each line in the file ...
         String line;
@@ -58,6 +58,10 @@ public class MagicSquares {
         while (((line = reader.readLine()) != null)) {
             if (!line.equals("")) {
                 String[] parts = line.split("\t");
+//                ArrayList<Integer>nums = new ArrayList<>();
+//                for (int i=0; i< parts.length; i++) {
+//                    nums.add(i,Integer.parseInt(parts[i]));
+//                }
                 if ((colCount == -1) || (colCount == parts.length)) {
                     colCount = parts.length;
                     for (String part : parts) {
@@ -65,7 +69,7 @@ public class MagicSquares {
                     }
                 }
                 else {
-                    mark = false;
+                    isColumnMagic = false;
                     break;
                 }
                 rowCount++;
@@ -74,13 +78,13 @@ public class MagicSquares {
 
         ArrayList<Integer> columnSums =new ArrayList<>();
         int columnSum = 0;
-        if (mark) {
+        if (isColumnMagic) {
             for (int i=0; i<colCount; i++) {
                 int cnt = 0;
                 columnSum = 0;
                 for (int j=0; j<rowCount; j++) {
                     columnSum+=Integer.parseInt(columns.get(cnt+i));
-                    cnt+=8;
+                    cnt+=colCount;
                 }
                 columnSums.add(columnSum);
             }
@@ -100,27 +104,39 @@ public class MagicSquares {
         BufferedReader reader = new BufferedReader(new FileReader(pathName));
 
         boolean isDiagonalMagic = true;
-        int lastSum = -1;
+        int rowCount = 0;
+        int colCount = -1;
 
         // For each line in the file ...
         String line;
+        ArrayList<String> diagonals = new ArrayList<>();
+        ArrayList<String> antiDiagonals = new ArrayList<>();
         while (((line = reader.readLine()) != null)) {
-            // ... sum each row of numbers
             if (!line.equals("")) {
                 String[] parts = line.split("\t");
-                int sum = 0;
-                for (String part : parts) {
-                    sum += Integer.parseInt(part);
+                if ((colCount == -1) || (colCount == parts.length)) {
+                    colCount = parts.length;
+                    diagonals.add(parts[rowCount]);
+                    antiDiagonals.add(parts[parts.length-rowCount-1]);
                 }
-                if (lastSum == -1) {
-                    // If this is the first row, remember the sum
-                    lastSum = sum;
-                } else if (lastSum != sum) {
-                    // if the sums don't match, it isn't magic, so stop reading
+                else {
                     isDiagonalMagic = false;
                     break;
                 }
+                rowCount++;
             }
+        }
+
+        int diagonalSum = 0;
+        int antiDiagonalSum = 0;
+        if (isDiagonalMagic) {
+            for (int i=0; i<diagonals.size(); i++) {
+                diagonalSum+=Integer.parseInt(diagonals.get(i));
+                antiDiagonalSum+=Integer.parseInt(antiDiagonals.get(i));
+            }
+        }
+        if (diagonalSum != antiDiagonalSum) {
+            isDiagonalMagic = false;
         }
 
         reader.close();
