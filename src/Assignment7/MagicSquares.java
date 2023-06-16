@@ -51,6 +51,7 @@ public class MagicSquares {
         boolean isColumnMagic = true;
         int rowCount = 0;
         int colCount = -1;
+        ArrayList<Integer>nums = new ArrayList<>();
 
         // For each line in the file ...
         String line;
@@ -58,14 +59,18 @@ public class MagicSquares {
         while (((line = reader.readLine()) != null)) {
             if (!line.equals("")) {
                 String[] parts = line.split("\t");
-//                ArrayList<Integer>nums = new ArrayList<>();
-//                for (int i=0; i< parts.length; i++) {
-//                    nums.add(i,Integer.parseInt(parts[i]));
-//                }
+
                 if ((colCount == -1) || (colCount == parts.length)) {
                     colCount = parts.length;
-                    for (String part : parts) {
-                        columns.add(part);
+                    if (rowCount == 0) {
+                        for (int i=0; i< parts.length; i++) {
+                            nums.add(i,Integer.parseInt(parts[i]));
+                        }
+                    }
+                    else {
+                        for (int i=0; i< parts.length; i++) {
+                            nums.set(i, nums.get(i)+Integer.parseInt(parts[i]));
+                        }
                     }
                 }
                 else {
@@ -75,22 +80,9 @@ public class MagicSquares {
                 rowCount++;
             }
         }
-
-        ArrayList<Integer> columnSums =new ArrayList<>();
-        int columnSum = 0;
-        if (isColumnMagic) {
-            for (int i=0; i<colCount; i++) {
-                int cnt = 0;
-                columnSum = 0;
-                for (int j=0; j<rowCount; j++) {
-                    columnSum+=Integer.parseInt(columns.get(cnt+i));
-                    cnt+=colCount;
-                }
-                columnSums.add(columnSum);
-            }
-        }
-        for (int eachSum : columnSums) {
-            if (eachSum != columnSum) {
+        int mark = nums.get(0);
+        for (int num : nums) {
+            if (num != mark) {
                 isColumnMagic = false;
             }
         }
